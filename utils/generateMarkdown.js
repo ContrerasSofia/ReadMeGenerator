@@ -1,5 +1,44 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
+function TableofContents(data){
+  let count = 0;
+  let  text;
+  switch(data){
+    case'Description':
+      count++;
+      text = text + `- [Description](#description)
+      `
+    case 'Installation':
+      count++;
+      text = text + `- [Installation](#installation)
+      `
+    case 'Usage':
+      count++;
+      text = text + `- [Usage](#usage)
+      `
+    case 'License':
+      count++;
+      text = text + `- [License](#license)
+      `
+    case 'Tests':
+      count++;
+      text = text + `- [Tests](#tests)
+      `
+    case 'HowtoContribute':
+      count++;
+      text = text + `- [How to Contribute](#how-to-contribute)
+      `
+    case 'Email':
+    case 'Git':
+      count++;
+      text = text + `- [Questions](#questions)
+      `
+  }
+
+  if (count>3)
+    return text
+  else
+    return ''
+}
+
 function renderLicenseBadge(license) {
   switch (license) {
     case 'edX':
@@ -19,8 +58,6 @@ function renderLicenseBadge(license) {
   return
 }
 
-
-// TODO: Create a function to generate markdown for README
 function sintax(title, text){
   return `## ${title}
 
@@ -29,7 +66,6 @@ function sintax(title, text){
  `
 }
 
-
 function generateMarkdown(data) {
   let badge = renderLicenseBadge(data.Badge);
   let markdown = `# ${data.Title}
@@ -37,7 +73,10 @@ function generateMarkdown(data) {
   ${badge}
 
   `
+  const index = TableofContents(data)
   
+  if(index)
+    markdown = markdown + sintax('Table of Contents', index)
   if(data.Description)
    markdown = markdown + sintax('Description',data.Description)
   if(data.Installation)
