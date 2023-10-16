@@ -1,7 +1,7 @@
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {
-  switch (data.Badge) {
+  switch (license) {
     case 'edX':
       return '![edX](https://img.shields.io/badge/edX-%2302262B.svg?style=for-the-badge&logo=edX&logoColor=white)'
     case 'Duolingo':
@@ -37,7 +37,6 @@ function generateMarkdown(data) {
   ${badge}
 
   `
-
   
   if(data.Description)
    markdown = markdown + sintax('Description',data.Description)
@@ -66,7 +65,7 @@ function generateMarkdown(data) {
     }else
       markdown = markdown + sintax('Questions', 'How to contatact me: '+ data.Email)
   }else if(data.Git)
-    markdown = markdown + sintax('Questions', `[${data.git}](${data.GitLink})`);
+    markdown = markdown + sintax('Questions', `[${data.Git}](${data.GitLink})`);
   
   return markdown
 }

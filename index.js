@@ -30,7 +30,7 @@ const questions = [{
   },
   {
     type: 'input',
-    message:'License badge',
+    message:'License description',
     name: 'License',
   },
   {
@@ -67,7 +67,13 @@ const questions = [{
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-
+  var fs = require('fs');
+  fs.writeFile(fileName, data , function(err) {
+      if (err) {
+          return console.log(err);
+      }
+   console.log("El archivo fue creado correctamente");
+  });
 }
 
 // TODO: Create a function to initialize app
@@ -75,7 +81,7 @@ function init() {
     inquirer
         .prompt(questions)
         .then((response) =>
-            console.log(utils(response))
+           writeToFile('readme.md', utils(response))
         );
 }
 
