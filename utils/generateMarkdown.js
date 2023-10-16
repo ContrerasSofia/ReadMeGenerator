@@ -1,37 +1,35 @@
 function TableofContents(data){
   let count = 0;
-  let  text;
-  switch(data){
-    case'Description':
+  var  text = '';
+    if (data.Description){
       count++;
       text = text + `- [Description](#description)
       `
-    case 'Installation':
+    }if(data.Installation){
       count++;
       text = text + `- [Installation](#installation)
       `
-    case 'Usage':
+    } if(data.Usage){
       count++;
       text = text + `- [Usage](#usage)
       `
-    case 'License':
+    } if (data.License){
       count++;
       text = text + `- [License](#license)
       `
-    case 'Tests':
+    } if (data.Tests){
       count++;
       text = text + `- [Tests](#tests)
       `
-    case 'HowtoContribute':
+    }if (data.HowtoContribute){
       count++;
       text = text + `- [How to Contribute](#how-to-contribute)
       `
-    case 'Email':
-    case 'Git':
+    } if (data.Email || data.Git){
       count++;
       text = text + `- [Questions](#questions)
-      `
-  }
+    `
+    }
 
   if (count>3)
     return text
@@ -58,10 +56,10 @@ function renderLicenseBadge(license) {
   return
 }
 
-function sintax(title, text){
+function sintax(title, cont){
   return `## ${title}
 
-  ${text}
+  ${cont}
 
  `
 }
@@ -73,8 +71,7 @@ function generateMarkdown(data) {
   ${badge}
 
   `
-  const index = TableofContents(data)
-  
+  const index = TableofContents(data);
   if(index)
     markdown = markdown + sintax('Table of Contents', index)
   if(data.Description)
